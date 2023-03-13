@@ -5,14 +5,18 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import tensorflow as tf
+import streamlit as st
 
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from scipy.spatial import Delaunay
 
-import tensorflow as tf
+st.title ("Activity 4")
 
 tf.compat.v1.disable_eager_execution()
+
+option = []
 
 def _plt_basic_object_ (points) :
      
@@ -31,6 +35,7 @@ def _plt_basic_object_ (points) :
      ax.set_zlim3d (-5,5)
 
      plt.show()
+     st.pyplot (fig)
 
 #cube
 def _cube_ (bottom_lower = (0,0,0,), side_length = 5):
@@ -68,6 +73,26 @@ with tf.compat.v1.Session() as session:
 
 _plt_basic_object_ (translated_cube)
 
+def rotate(option, points):
+    def rotate_obj(points, angle):
+        angle = float(angle)
+        rotation_matrix = tf.stack([
+                        [tf.cos(angle), tf.sin(angle), 0],
+                        [-tf.sin(angle), tf.cos(angle), 0],
+                        [0, 0, 1]
+        ])
+
+        rotate_object = tf.matmul(tf.cast(points, tf.float32), tf.cast(rotation_matrix, tf.float32))
+        
+        return rotate_object
+        
+        
+    with tf.compat.v1.Session() as session:
+         
+          if option == "Cube":
+            rotated_object = session.run(rotate_obj(init_cube_, 75)) 
+            _plt_basic_object (rotated_object)
+
 #pyramid
 def _pyramid_ (bottom_lower = (0,0,0,), side_length = 5, height = 5):
      
@@ -103,6 +128,25 @@ with tf.compat.v1.Session() as session:
 
 _plt_basic_object_ (translated_pyramid)
 
+def rotate(option, points):
+    def rotate_obj(points, angle):
+        angle = float(angle)
+        rotation_matrix = tf.stack([
+                        [tf.cos(angle), tf.sin(angle), 0],
+                        [-tf.sin(angle), tf.cos(angle), 0],
+                        [0, 0, 1]
+        ])
+
+        rotate_object = tf.matmul(tf.cast(points, tf.float32), tf.cast(rotation_matrix, tf.float32))
+        
+        return rotate_object
+        
+        
+    with tf.compat.v1.Session() as session:
+            if option == "Pyramid":
+               rotated_object = session.run(rotate_obj(init_pyramid_, 75)) 
+            _plt_basic_object(rotated_object)
+
 
 #triangular prism
 def _triangular_prism_(bottom_lower=(0, 0, 0), side_length=5, height=5):
@@ -127,7 +171,6 @@ points = tf.constant (init_triangular_prism_, dtype = tf.float32)
 
 _plt_basic_object_ (init_triangular_prism_)
 
-
 def translate_obj (points, amount):
      return tf.add (points, amount)
 
@@ -138,6 +181,24 @@ with tf.compat.v1.Session() as session:
      translated_triangular_prism = session.run (translated_object)
 
 _plt_basic_object_ (translated_triangular_prism)
+
+def rotate(option, points):
+    def rotate_obj(points, angle):
+        angle = float(angle)
+        rotation_matrix = tf.stack([
+                        [tf.cos(angle), tf.sin(angle), 0],
+                        [-tf.sin(angle), tf.cos(angle), 0],
+                        [0, 0, 1]
+        ])
+
+        rotate_object = tf.matmul(tf.cast(points, tf.float32), tf.cast(rotation_matrix, tf.float32))
+        
+        return rotate_object
+             
+    with tf.compat.v1.Session() as session:
+          if option == "Triangular Prism":
+            rotated_object = session.run(rotate_obj(init_triangular_prism_, 75)) 
+            _plt_basic_object (rotated_object)
 
 #sphere
 def _sphere_(center=(0,0,0,), radius=1):
@@ -170,4 +231,66 @@ with tf.compat.v1.Session() as session:
 
 _plt_basic_object_ (translated_sphere)
 
+def rotate(option, points):
+    def rotate_obj(points, angle):
+        angle = float(angle)
+        rotation_matrix = tf.stack([
+                        [tf.cos(angle), tf.sin(angle), 0],
+                        [-tf.sin(angle), tf.cos(angle), 0],
+                        [0, 0, 1]
+        ])
+
+        rotate_object = tf.matmul(tf.cast(points, tf.float32), tf.cast(rotation_matrix, tf.float32))
+        
+        return rotate_object
+                
+    with tf.compat.v1.Session() as session:      
+        if option == "Sphere":
+            rotated_object = session.run(rotate_obj(init_sphere_, 75)) 
+            _plt_basic_object (rotated_object)        
+
+def main ():
+
+     option = st.selectbox('What shape would you like to manipulate?', ('Cube', 'Pyramid', 'Triangular Prism', 'Sphere'))
+
+     st.write('The shape you chose is:', option)
+
+if option == "Cube":
+        _cube_ (bottom_lower=(0, 0, 0), side_length=3)
+        init_cube_ = _cube_ (side_length=3)
+        points = tf.constant (init_cube_, dtype=tf.float32)
+        st.subheader ('Translated Cube: ')
+        translate (points)
+        st.subheader ('Cube rotated 75 Degrees: ')
+        rotate (option, points)
+        
+if option == "Pyramid":
+        _pyramid_ (side_length=1)
+        init_pyramid_ = _pyramid_ (side_length=1)
+        points = tf.constant (init_pyramid_, dtype=tf.float32)
+        st.subheader ('Translated Pyramid: ')
+        translate (points)
+        st.subheader ('Pyramid rotated 75 Degrees: ')
+        rotate (option, points)
+            
+if option == "Triangular Prism":
+        _triangular_prism_ (side_length=3)
+        init_triangular_prism_ = _triangular_prism_ (side_length=3)
+        points = tf.constant (init_triangular_prism_, dtype = tf.float32)
+        st.subheader ('Translated Triangular Prism: ')
+        translate (points)
+        st.subheader ('Triangular Prism rotated 75 Degrees: ')
+        rotate (option, points)
+            
+if option == "Sphere":
+        _sphere_ (center=(0,0,0,), radius=1)
+        init_sphere_ = _sphere_ (radius=3)
+        points = tf.constant (init_sphere_, dtype = tf.float32)
+        st.subheader ('Translated Sphere: ')
+        translate (points)
+        st.subheader ('Sphere rotated 75 Degrees: ')
+        rotate (option, points)
+        
+if __name__ == '__main__':
+    main()
 
