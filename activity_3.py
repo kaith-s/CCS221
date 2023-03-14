@@ -13,7 +13,7 @@ def sheared_img(img):
                                  [0,1,0],
                                  [0,0,1]])
 
-    sheared_img = cv2.warpPerspective (img,m_shearing_x, (int (cols*1.5), int (rows)))
+    sheared_img_ = cv2.warpPerspective (img,m_shearing_x, (int (cols*1.5), int (rows)))
     return sheared_img
 
 def translation_img (img):
@@ -38,6 +38,8 @@ def rotation_img():
 
     rotated_img_=cv2.warpAffine(img ,m_rotation_,(cols,rows))
 
+    return rotation_img
+
 def scaled_img ():
     rows, cols = img.shape [:2]
     m_scaling_=np.float32([[1.5,0,0],[0,1.8,0],[0,0,1]])
@@ -49,18 +51,19 @@ def scaled_img ():
     resized_img_=cv2.resize(img, None,fx=4,fy=4, interpolation=cv2.INTER_CUBIC)
     resized_img_.shape
 
-
 #OR
     height, width = img.shape[:2]
     resized_img_= cv2.resize(img,(8*width, 8*height), interpolation = cv2.INTER_CUBIC)
     resized_img_.shape
+
+    return scaled_img
 
 def reflected_img ():
     rows, cols = img.shape [:2]
     m_reflection_ = np.float32 ([[1,0,0],
                                  [0,-1,rows],
                                  [0,0,1]])
-    reflected_img = cv2.warpPerspective (img,m_reflection_, (int(cols), int (rows)))
+    reflected_img_ = cv2.warpPerspective (img,m_reflection_, (int(cols), int (rows)))
     return reflected_img
 
 def main ():
@@ -75,17 +78,17 @@ def main ():
     else:
         img = read_image ("haha.jpg")
 
-    sheared_img = sheared_img (img)
-    translation_img = translation_img (img)
-    rotation_img = rotation_img (img)
-    scaled_img = scaled_img (img)
-    reflected_img = reflected_img (img)
+    sheared_img_ = sheared_img (img)
+    translated_img = translation_img (img)
+    rotated_img_ = rotation_img (img)
+    scaled_img_ = scaled_img (img)
+    reflected_img_ = reflected_img (img)
 
-    st.image (scaled_img)
-    st.image (translation_img)
-    st.image (rotation_img)
-    st.image (scaled_img)
-    st.image (reflected_img)
+    st.image (sheared_img_)
+    st.image (translated_img)
+    st.image (rotated_img_)
+    st.image (scaled_img_)
+    st.image (reflected_img_)
 
     plt.show ()
 
