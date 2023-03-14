@@ -20,7 +20,7 @@ else:
 def main ():
 
     # get the image shape
-    rows, cols, dim = img.shape
+    rows, cols, img = img.shape
 # transformation matrix for translation
     M = np.float32([[1, 0, 60],
                 [0, 1, 50],
@@ -39,6 +39,9 @@ def main ():
     translated_img = cv2.warpPerspective(img, M, (cols, rows))
     st.image (translated_img,img)
     plt.show()
+    st.show(img)
+
+    
 
 #rotation transformation matrix
     angle= np.radians(10)
