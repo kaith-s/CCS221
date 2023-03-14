@@ -41,7 +41,6 @@ def DDALine(x1, y1, x2, y2, color):
             p = p + 2 * (dy - dx)
         else:
             p = p + 2 * dy 
-        x = x + 1 if x < x2 else x - 1
         dx.append(x)
         dy.append(y)
     ax.plot(dx, dy)
