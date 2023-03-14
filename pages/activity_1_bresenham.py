@@ -1,5 +1,6 @@
 #bresenham's line algorithm
 import matplotlib.pyplot as plt
+import panda as pd
 
 import streamlit as st
 
