@@ -76,7 +76,7 @@ def main ():
         nparr = np.frombuffer(bytes_data, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     else:
-        img = read_image ("haha.jpg")
+        img = read_image ()
 
     sheared_img_ = sheared_img (img)
     translated_img = translation_img (img)
