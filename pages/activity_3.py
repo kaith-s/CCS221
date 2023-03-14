@@ -15,7 +15,7 @@ if uploaded_file is not None:
         nparr = np.frombuffer(bytes_data, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 else:
-        img = read_image ()
+        img = read_image()
 
 def main ():
 
@@ -34,7 +34,7 @@ def main ():
         nparr = np.frombuffer(bytes_data, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     else:
-        img = read_image ()
+        img = read_image()
 
     translated_img = cv2.warpPerspective(img, M, (cols, rows))
     st.image (translated_img,img)
