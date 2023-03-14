@@ -14,7 +14,7 @@ def sheared_img(img):
                                  [0,0,1]])
 
     sheared_img_ = cv2.warpPerspective (img,m_shearing_x, (int (cols*1.5), int (rows)))
-    return sheared_img
+    return sheared_img_
 
 def translation_img (img):
     rows, cols = img.shape [:2]
@@ -38,7 +38,7 @@ def rotation_img():
 
     rotated_img_=cv2.warpAffine(img ,m_rotation_,(cols,rows))
 
-    return rotation_img
+    return rotated_img_
 
 def scaled_img ():
     rows, cols = img.shape [:2]
@@ -56,7 +56,7 @@ def scaled_img ():
     resized_img_= cv2.resize(img,(8*width, 8*height), interpolation = cv2.INTER_CUBIC)
     resized_img_.shape
 
-    return scaled_img
+    return scaled_img_
 
 def reflected_img ():
     rows, cols = img.shape [:2]
@@ -64,7 +64,7 @@ def reflected_img ():
                                  [0,-1,rows],
                                  [0,0,1]])
     reflected_img_ = cv2.warpPerspective (img,m_reflection_, (int(cols), int (rows)))
-    return reflected_img
+    return reflected_img_
 
 def main ():
 
