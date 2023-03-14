@@ -15,7 +15,8 @@ if uploaded_file is not None:
         nparr = np.frombuffer(bytes_data, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 else:
-        read_image()
+        img = read_image()
+        st.show()
 
 def main ():
 
