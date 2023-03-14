@@ -87,6 +87,10 @@ def main ():
     st.image (scaled_img)
     st.image (reflected_img)
 
+    plt.show ()
+
+main()
+
     
 
     
