@@ -12,7 +12,7 @@ def bres_line_mpoint(x1,y1,x2,y2):
     slope = dy/float(dx)
 
     if slope > 1:
-        dx, dy = dy, dx
+        dx, dy = dy, dx 
         x, y = y, x
         x1, y1 = y1, x1
         x2, y2 = y2, x2
