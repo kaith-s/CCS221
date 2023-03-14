@@ -53,3 +53,5 @@ def main():
 
     if algorithm == "Bresenham":  
         bres_line_mpoint(x1,y1,x2,y2)
+
+main()
