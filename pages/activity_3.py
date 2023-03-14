@@ -38,7 +38,7 @@ def rotate(img):
 
 
 
-def scaling_img(img):
+def scaling(img):
     rows, cols = img.shape[:2]
     m_scaling_=np.float32([[1.5,0,0],
                        [0,1.8,0],
@@ -48,7 +48,7 @@ def scaling_img(img):
 
 
 
-def reflection_img(img):
+def reflection(img):
     rows, cols = img.shape[:2]
     m_reflection_ =np.float32([[1,0,0],
                           [0,-1,rows],
@@ -57,7 +57,7 @@ def reflection_img(img):
     return reflected_img_
 
 
-def shear_img(img):
+def shear(img):
     rows, cols = img.shape[:2]
     m_shearing_x=np.float32([[1,0.5,0],
                          [0,1,0],
@@ -68,7 +68,7 @@ def shear_img(img):
     return sheared_img_x
 
 def main():
-    st.title("Image Transformations")
+    st.title("ACTIVITY 3 - IMAGE TRANSFORMATIONS")
 
     # file upload
     uploaded_file = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png"])
@@ -78,14 +78,14 @@ def main():
         nparr = np.frombuffer(bytes_data, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     else:
-        img = read_image("flower.jpg")
+        img = read_image()
 
     # perform transformations
     translated_img_ = translate(img)
     rotated_img_ = rotate(img)
-    scaled_img_ = scaling_img(img)
-    reflected_img_ = reflection_img(img)
-    sheared_img_x = shear_img(img)
+    scaled_img_ = scaling(img)
+    reflected_img_ = reflection(img)
+    sheared_img_x = shear(img)
 
     # show images
     st.subheader("Original Image")
