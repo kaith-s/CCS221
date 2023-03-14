@@ -22,34 +22,40 @@ def DDALine(x1, y1, x2, y2, color):
     Xinc = float(dx / steps)
     Yinc = float(dy / steps)
 
+    
+
+    fig,ax=plt.subplots()
     for i in range(0, int(steps +1 )):
 
         #draw pixels
 
-        plt.plot(int(x1), int (y1), color)
+        ax.plot(int(x1), int (y1), color)
         x1 += Xinc
         y1 += Yinc
+        
     
     midX = (x1 + x2) // 2
     midY = (y1 + y2) // 2
-
-    fig, ax = plt.subplots()
-    ax.plot(dx, dy, marker='o', markerfacecolor="green")
-    for i in range(1, int(dx)):
-        if p > 0:
-            y = y + 1 if y < y2 else y - 1
-            p = p + 2 * (dy - dx)
-        else:
-            p = p + 2 * dy 
-        dx.append(x)
-        dy.append(y)
-    ax.plot(dx, dy)
+    ax.plot(midX, midY, marker='o', markerfacecolor="green")
      
-    plt.scatter(midY, midX, color = 'red') 
-    st.write('X-Axis')
-    st.write('Y-Axis')    
-    st.title("DDALine")
+    
+    ax.set_xlabel("X-Axis")
+    ax.set_ylabel("Y-Axis")
+
     st.pyplot(fig)
 
+def main():
+    st.sidebar.title("Select Algorithm")
+    algorithm = st.sidebar.selectbox("Select Algorithm", ("DDA", "Bresenham"))
+
+    x1 = st.sidebar.number_input("Enter the Starting point of x:")
+    y1 = st.sidebar.number_input("Enter the Starting point of y:")
+    x2 = st.sidebar.number_input("Enter the end point of x:")
+    y2 = st.sidebar.number_input("Enter the end point of y:")
+
+    if algorithm == "DDA":  
+        DDALine(x1, y1, x2, y2, color)
+
+main()
 
 
