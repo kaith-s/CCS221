@@ -8,11 +8,6 @@ def read_image(path):
     return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 def translation_ (img):
-# read the input image
-    img = cv2.imread('haha.png')
-    print(img)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    plt.imshow(img)
 
 # get the image shape
     rows, cols, dim = img.shape
