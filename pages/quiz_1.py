@@ -47,6 +47,8 @@ def main ():
     st.subheader("Translated Image")
     st.image(translated_img)
 
+    plt.show()
+
 main()
 
 
