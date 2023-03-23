@@ -92,17 +92,8 @@ def main():
     else:
         img = read_image()
 
+
     #The following lines calls each of the functions for specific transformations of the images.
-    tx = int(input("Enter the value to shift in X-axis: ")) 
-    ty = int(input("Enter the value to shift in Y-axis: "))
-    rotx = int(input("Enter value to rotate the image in degrees: "))
-    scaleX = int(input("Enter the value to scale in X-Axis: "))
-    scaleY = int(input("Enter the value to scale in Y-Axis: "))
-    shearX = float(input("Enter the value to shear in X-Axis: "))
-    shearY = float(input("Enter the value to shear in Y-Axis: "))
-
-
-        #The following lines calls each of the functions for specific transformations of the images.
     translated_img_ = translation(img)
     rotated_img_ = rotation(img)
     scaled_img_ = scaling_img(img)
