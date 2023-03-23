@@ -45,19 +45,19 @@ def scaling_img(img, scaleX, scaleY):
 
 def reflection_v(img):
     rows, cols = img.shape[:2]
-    m_reflection_ =np.float32([[1,0,0],
+    m_reflection_v =np.float32([[1,0,0],
                           [0,-1, rows],
                           [0,0,1]])
-    reflected_img_ =cv2.warpPerspective(img,m_reflection_,(int(cols),int (rows)))
-    return reflected_img_
+    reflected_v =cv2.warpPerspective(img,m_reflection_v,(int(cols),int (rows)))
+    return reflected_v
 
 def reflection_h(img):
     rows, cols = img.shape[:2]
-    m_reflection_ =np.float32([[-1, 0, cols],
+    m_reflection_h =np.float32([[-1, 0, cols],
                           [0, 1, 0],
                           [0, 0, 1]])
-    reflected_img_ =cv2.warpPerspective(img,m_reflection_,(int(cols),int (rows)))
-    return reflected_img_
+    reflected_h =cv2.warpPerspective(img,m_reflection_h,(int(cols),int (rows)))
+    return reflected_h
 
 def shear_X(img, shearX):
     rows, cols = img.shape[:2]
@@ -71,13 +71,13 @@ def shear_X(img, shearX):
 
 def shear_Y(img, shearY):
     rows, cols = img.shape[:2]
-    m_shearing_x=np.float32([[1, 0 ,0],
+    m_shearing_y=np.float32([[1, 0 ,0],
                          [ shearY , 1 ,0],
                          [0, 0, 1]])
 
-    sheared_img_x = cv2.warpPerspective(img, m_shearing_x,(int(cols*1.5),int(rows*1.5)))
+    sheared_img_y = cv2.warpPerspective(img, m_shearing_y,(int(cols*1.5),int(rows*1.5)))
 
-    return sheared_img_x
+    return sheared_img_y
 
 def main():
     st.title ("Activity 3: IMAGE TRANSFORMATIONS")
