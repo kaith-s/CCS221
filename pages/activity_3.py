@@ -101,45 +101,41 @@ def main():
     shearX = float(input("Enter the value to shear in X-Axis: "))
     shearY = float(input("Enter the value to shear in Y-Axis: "))
 
-for i in range(1, 6): 
-        img_path = f"haha.png"
-        img = cv2.imread(img_path)
-        cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
         #The following lines calls each of the functions for specific transformations of the images.
-        translated_img_ = translation(img)
-        rotated_img_ = rotation(img)
-        scaled_img_ = scaling_img(img)
-        reflected_h = reflection_h(img)
-        reflected_v = reflection_v(img)
-        sheared_img_x = shear_X(img)
-        sheared_img_y = shear_Y(img)
+    translated_img_ = translation(img)
+    rotated_img_ = rotation(img)
+    scaled_img_ = scaling_img(img)
+    reflected_h = reflection_h(img)
+    reflected_v = reflection_v(img)
+    sheared_img_x = shear_X(img)
+    sheared_img_y = shear_Y(img)
 
 
-        st.subheader("Original Image")
-        st.image(img)
+    st.subheader("Original Image")
+    st.image(img)
 
-        st.subheader("Translated Image")
-        st.image(translated_img_)
+    st.subheader("Translated Image")
+    st.image(translated_img_)
 
-        st.subheader("Rotated Image")
-        st.image(rotated_img_)
+    st.subheader("Rotated Image")
+    st.image(rotated_img_)
 
-        st.subheader("Scaled Image")
-        st.image(scaled_img_)
+    st.subheader("Scaled Image")
+    st.image(scaled_img_)
 
-        st.subheader("Reflected Image")
-        st.image(reflected_h)
+    st.subheader("Reflected Image")
+    st.image(reflected_h)
 
-        st.subheader("Reflected Image")
-        st.image(reflected_v)
+    st.subheader("Reflected Image")
+    st.image(reflected_v)
 
-        st.subheader("Sheared Image")
-        st.image(sheared_img_x)
+    st.subheader("Sheared Image")
+    st.image(sheared_img_x)
 
-        st.subheader("Sheared Image")
-        st.image(sheared_img_y)
+    st.subheader("Sheared Image")
+    st.image(sheared_img_y)
 
-        plt.show()
+    plt.show()
 
 main ()
