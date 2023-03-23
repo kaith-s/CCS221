@@ -14,17 +14,17 @@ def read_image(path):
     img = cv2.imread(path)
     return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-def translation(img, tx, ty):
+def translation(img):
     rows, cols = img.shape[:2]
-    m_translation_ =np.float32([[1,0, tx],
-                        [0,1 , ty],
-                        [0,0,1]])
+    m_translation_ = np.float32([[1, 0, 60],
+                [0, 1, 50],
+                [0, 0, 1]])
 
-    translated_img_= cv2.warpPerspective(img,m_translation_,(cols, rows))
+    translated_img_= cv2.warpPerspective(img, m_translation_,(cols, rows))
 
     return translated_img_
 
-def rotation(img, rotx):
+def rotation(img):
 
     angle =np.radians(10)
     rows, cols = img.shape[:2]
@@ -32,15 +32,15 @@ def rotation(img, rotx):
                         [np.sin(angle), np.cos(angle),0],
                         [0,0,1]])
 
-    m_rotation_=cv2.getRotationMatrix2D((cols/2,rows/2), rotx, 1)
+    m_rotation_=cv2.getRotationMatrix2D((cols/2,rows/2), 80, 1)
     rotated_img_ = cv2.warpAffine(img,m_rotation_,(cols,rows))
 
     return rotated_img_
 
-def scaling_img(img, scaleX, scaleY):
+def scaling_img(img):
     rows, cols = img.shape[:2]
-    m_scaling_=np.float32([[scaleX ,0 ,0],
-                       [0, scaleY ,0],
+    m_scaling_=np.float32([[1 ,0 ,0],
+                       [0, 1.5 ,0],
                        [0,0,1]])
     scaled_img_ =cv2.warpPerspective(img,m_scaling_,(cols*2,rows*2))
 
@@ -55,9 +55,9 @@ def reflection_(img):
 
     return reflected_img_
 
-def shear_(img, shearX):
+def shear_(img):
     rows, cols = img.shape[:2]
-    m_shearing_=np.float32([[1, shearX ,0],
+    m_shearing_=np.float32([[1, 0.5 ,0],
                          [0,1,0],
                          [0,0,1]])
 
