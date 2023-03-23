@@ -107,51 +107,39 @@ for i in range(1, 6):
         cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
         #The following lines calls each of the functions for specific transformations of the images.
-        translated_img_ = translation(img, tx=int(input("Enter the value to shift in X-axis: ")) , ty=int(input("Enter the value to shift in Y-axis: ")))
-        rotated_img_ = rotation(img, rotx=int(input("Enter value to rotate the image in degrees: ")))
-        scaled_img_ = scaling_img(img,  scaleX = int(input("Enter the value to scale in X-Axis: ")), scaleY = int(input("Enter the value to scale in Y-Axis: ")))
+        translated_img_ = translation(img)
+        rotated_img_ = rotation(img)
+        scaled_img_ = scaling_img(img)
         reflected_h = reflection_h(img)
         reflected_v = reflection_v(img)
-        sheared_img_x = shear_X(img,  shearX = float(input("Enter the value to shear in X-Axis: ")))
-        sheared_img_y = shear_Y(img, shearY = float(input("Enter the value to shear in Y-Axis: ")))
+        sheared_img_x = shear_X(img)
+        sheared_img_y = shear_Y(img)
 
-        
-        fig, axs = plt.subplots(2, 4, figsize=(18, 14))
-        fig = plt.gcf()
-        fig.canvas.manager.set_window_title('OpenCV Transformations') 
 
-        axs[0, 0].imshow(img)
-        axs[0, 0].set_title("Original Image")
-        axs[0, 0].axis("off")
+        st.subheader("Original Image")
+        st.image(img)
 
-        axs[0, 1].imshow(translated_img_)
-        axs[0, 1].set_title("Translated Image")
-        axs[0, 1].axis("off")
+        st.subheader("Translated Image")
+        st.image(translated_img_)
 
-        axs[0, 2].imshow(rotated_img_)
-        axs[0, 2].set_title("Rotated Image")
-        axs[0, 2].axis("off")
+        st.subheader("Rotated Image")
+        st.image(rotated_img_)
 
-        axs[0, 3].imshow(scaled_img_)
-        axs[0, 3].set_title("Scaled Image")
-        axs[0, 3].axis("off")
+        st.subheader("Scaled Image")
+        st.image(scaled_img_)
 
-        axs[1, 0].imshow(reflected_h)
-        axs[1, 0].set_title("Reflected Image (Horizontal)")
-        axs[1, 0].axis("off")
+        st.subheader("Reflected Image")
+        st.image(reflected_h)
 
-        axs[1, 1].imshow(reflected_v)
-        axs[1, 1].set_title("Reflected Image (Vertical)")
-        axs[1, 1].axis("off")
+        st.subheader("Reflected Image")
+        st.image(reflected_v)
 
-        axs[1, 2].imshow(sheared_img_x)
-        axs[1, 2].set_title("Sheared Horizontally(X)")
-        axs[1, 2].axis("off")
+        st.subheader("Sheared Image")
+        st.image(sheared_img_x)
 
-        axs[1, 3].imshow(sheared_img_y)
-        axs[1, 3].set_title("Sheared Vertically(Y)")
-        axs[1, 3].axis("off")
+        st.subheader("Sheared Image")
+        st.image(sheared_img_y)
 
-        plt.show() 
+        plt.show()
 
 main ()
