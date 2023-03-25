@@ -65,8 +65,7 @@ _plt_basic_object_ (init_cube_)
 def translate_obj (points, amount):
      return tf.add (points, amount)
 
-translation_amount = tf.constant ([1,2,3], dtype=tf.float32)
-translated_object = translate_obj(points, translation_amount)
+
 
 with tf.compat.v1.Session() as session:
      translated_cube = session.run (translated_object)
@@ -251,20 +250,27 @@ def rotate(option, points):
 
 def main ():
 
-     option = st.selectbox('What shape would you like to manipulate?', ('Cube', 'Pyramid', 'Triangular Prism', 'Sphere'))
+     st.sidebar.title("Select 3D")
+     option = st.sidebar.selectbox('What shape would you like to manipulate?', ('Cube', 'Pyramid', 'Triangular Prism', 'Sphere'))
 
      st.write('The shape you chose is:', option)
 
-if option == "Cube":
-        _cube_ (bottom_lower=(0, 0, 0), side_length=3)
-        init_cube_ = _cube_ (side_length=3)
-        points = tf.constant (init_cube_, dtype=tf.float32)
-        st.subheader ('Translated Cube: ')
-        translate (points)
-        st.subheader ('Cube rotated 75 Degrees: ')
-        rotate (option, points)
+     if (option == "Cube"):
+          st.sidebar.title("Points for Pyramid")
+          x = st.sidebar.slider("Enter for x:", -10, 10, step=1,key='my_slider1')
+          y = st.sidebar.slider("Enter for y:", -10, 10, step=1,key='my_slider2')
+          z = st.sidebar.slider("Enter for z:", -10, 10, step=1,key='my_slider3')
         
-if option == "Pyramid":
+          translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
+          translated_points = translation_amount + points
+          fig1 = _plt_basic_object_(translated_points.numpy())
+          st.subheader("Cube")
+          st.pyplot(fig1) 
+
+          
+
+
+     if option == "Pyramid":
         _pyramid_ (side_length=1)
         init_pyramid_ = _pyramid_ (side_length=1)
         points = tf.constant (init_pyramid_, dtype=tf.float32)
@@ -273,7 +279,7 @@ if option == "Pyramid":
         st.subheader ('Pyramid rotated 75 Degrees: ')
         rotate (option, points)
             
-if option == "Triangular Prism":
+     if option == "Triangular Prism":
         _triangular_prism_ (side_length=3)
         init_triangular_prism_ = _triangular_prism_ (side_length=3)
         points = tf.constant (init_triangular_prism_, dtype = tf.float32)
@@ -282,7 +288,7 @@ if option == "Triangular Prism":
         st.subheader ('Triangular Prism rotated 75 Degrees: ')
         rotate (option, points)
             
-if option == "Sphere":
+     if option == "Sphere":
         _sphere_ (center=(0,0,0,), radius=1)
         init_sphere_ = _sphere_ (radius=3)
         points = tf.constant (init_sphere_, dtype = tf.float32)
