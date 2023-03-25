@@ -249,9 +249,9 @@ def main ():
 
      if (option == "Cube"):
           st.sidebar.title("Points for Cube")
-          x = st.sidebar.slider("Enter for x:", -10, 10, step=1,key='my_slider1')
-          y = st.sidebar.slider("Enter for y:", -10, 10, step=1,key='my_slider2')
-          z = st.sidebar.slider("Enter for z:", -10, 10, step=1,key='my_slider3')
+          x = st.sidebar.slider("Enter for x:", -5, 5, step=1,key='my_slider1')
+          y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
+          z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
         
           translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
           translated_points = translation_amount + points
