@@ -62,15 +62,7 @@ points = tf.constant (init_cube_, dtype = tf.float32)
 
 _plt_basic_object_ (init_cube_)
 
-def translate_obj (points, amount):
-     return tf.add (points, amount)
 
-
-
-with tf.compat.v1.Session() as session:
-     translated_cube = session.run (translated_object)
-
-_plt_basic_object_ (translated_cube)
 
 def rotate(option, points):
     def rotate_obj(points, angle):
