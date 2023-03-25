@@ -261,33 +261,6 @@ def main ():
 
           
 
-
-     if option == "Pyramid":
-        _pyramid_ (side_length=1)
-        init_pyramid_ = _pyramid_ (side_length=1)
-        points = tf.constant (init_pyramid_, dtype=tf.float32)
-        st.subheader ('Translated Pyramid: ')
-        translate (points)
-        st.subheader ('Pyramid rotated 75 Degrees: ')
-        rotate (option, points)
-            
-     if option == "Triangular Prism":
-        _triangular_prism_ (side_length=3)
-        init_triangular_prism_ = _triangular_prism_ (side_length=3)
-        points = tf.constant (init_triangular_prism_, dtype = tf.float32)
-        st.subheader ('Translated Triangular Prism: ')
-        translate (points)
-        st.subheader ('Triangular Prism rotated 75 Degrees: ')
-        rotate (option, points)
-            
-     if option == "Sphere":
-        _sphere_ (center=(0,0,0,), radius=1)
-        init_sphere_ = _sphere_ (radius=3)
-        points = tf.constant (init_sphere_, dtype = tf.float32)
-        st.subheader ('Translated Sphere: ')
-        translate (points)
-        st.subheader ('Sphere rotated 75 Degrees: ')
-        rotate (option, points)
         
 if __name__ == '__main__':
     main()
