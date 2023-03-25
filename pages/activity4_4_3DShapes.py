@@ -243,12 +243,12 @@ def rotate(option, points):
 def main ():
 
      st.sidebar.title("Select 3D")
-     option = st.sidebar.selectbox('What shape would you like to manipulate?', ('Cube', 'Pyramid', 'Triangular Prism', 'Sphere'))
+     option = st.sidebar.selectbox('What shape would you like to manipulate?', ("Cube", 'Pyramid', 'Triangular Prism', 'Sphere'))
 
      st.write('The shape you chose is:', option)
 
      if (option == "Cube"):
-          st.sidebar.title("Points for Pyramid")
+          st.sidebar.title("Points for Cube")
           x = st.sidebar.slider("Enter for x:", -10, 10, step=1,key='my_slider1')
           y = st.sidebar.slider("Enter for y:", -10, 10, step=1,key='my_slider2')
           z = st.sidebar.slider("Enter for z:", -10, 10, step=1,key='my_slider3')
