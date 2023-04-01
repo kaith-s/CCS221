@@ -8,11 +8,11 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 def change(two_d_arr,x,y,color):
  
   two_d_arr[x][y] = color
-
-  img = plt.imshow(two_d_arr, interpolation = 'none', cmap = 'Pastel2')
+  fig, ax = plt.subplots()
+  img = ax.imshow(two_d_arr, interpolation = 'none', cmap = 'Pastel2')
   img.set_clim([0,50])
-  plt.colorbar()
-  st.pyplot()
+  plt.colorbar(img)
+  st.pyplot(fig)
 
 def main():
   st.title ("2D Grid")
