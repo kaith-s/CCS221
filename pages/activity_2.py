@@ -27,5 +27,4 @@ def main():
 
   change (two_d_arr,x_val, y_val, c_val)
 
-if __name__ == '__main__':
-   main()
+main()
