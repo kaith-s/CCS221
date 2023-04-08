@@ -18,7 +18,7 @@ tf.compat.v1.disable_eager_execution()
 
 option = []
 
-def plt_basic_object (points) :
+def _plt_basic_object_ (points) :
      
      """" Plots a basic object, assuming its convex and not too complex"""
 
@@ -38,12 +38,12 @@ def plt_basic_object (points) :
      st.pyplot (fig)
 
 #cube
-def cube (bottom_lower = (0,0,0,), side_length = 5):
+def _cube_ (bottom_lower = (0,0,0,), side_length = 5):
      
      """ Create cube starting from the given bottom-lower point (lowest x,y,z values)"""
      bottom_lower = np.array (bottom_lower)
 
-     cubepoints = np.vstack ([
+     points = np.vstack ([
           bottom_lower,
           bottom_lower + [0, side_length, 0],
           bottom_lower + [side_length, side_length, 0],
@@ -55,14 +55,17 @@ def cube (bottom_lower = (0,0,0,), side_length = 5):
           bottom_lower,
      ])
 
-     return cubepoints
+     return points
 
-init_cube_ = cube (side_length=3)
-cubepoints = tf.constant (init_cube_, dtype = tf.float32)
+init_cube_ = _cube_ (side_length=3)
+points = tf.constant (init_cube_, dtype = tf.float32)
+
+_plt_basic_object_ (init_cube_)
 
 
-def rotate(option, cubepoints):
-    def rotate_obj(cubepoints, angle):
+
+def rotate(option, points):
+    def rotate_obj(points, angle):
         angle = float(angle)
         rotation_matrix = tf.stack([
                         [tf.cos(angle), tf.sin(angle), 0],
@@ -70,7 +73,7 @@ def rotate(option, cubepoints):
                         [0, 0, 1]
         ])
 
-        rotate_object = tf.matmul(tf.cast(cubepoints, tf.float32), tf.cast(rotation_matrix, tf.float32))
+        rotate_object = tf.matmul(tf.cast(points, tf.float32), tf.cast(rotation_matrix, tf.float32))
         
         return rotate_object
         
@@ -79,10 +82,10 @@ def rotate(option, cubepoints):
          
           if option == "Cube":
             rotated_object = session.run(rotate_obj(init_cube_, 75)) 
-
+            _plt_basic_object (rotated_object)
 
 #pyramid
-def pyramid (bottom_lower = (0,0,0,), side_length = 5, height = 5):
+def _pyramid_ (bottom_lower = (0,0,0,), side_length = 5, height = 5):
      
      """ Create pyramid starting from the given bottom-lower point (lowest x,y,z values)"""
      bottom_lower = np.array (bottom_lower)
@@ -96,26 +99,28 @@ def pyramid (bottom_lower = (0,0,0,), side_length = 5, height = 5):
 
      top_point = bottom_lower + [side_length/2, side_length/2, height]
 
-     pyramidpoints = np.vstack ([base_points, top_point])
+     points = np.vstack ([base_points, top_point])
 
-     return pyramidpoints
+     return points
 
-init_pyramid_ = pyramid (side_length=3)
-pyramidpoints = tf.constant (init_pyramid_, dtype = tf.float32)
+init_pyramid_ = _pyramid_ (side_length=3)
+points = tf.constant (init_pyramid_, dtype = tf.float32)
 
+_plt_basic_object_ (init_pyramid_)
 
-def translate_obj (pyramidoints, amount):
-     return tf.add (pyramidpoints, amount)
+def translate_obj (points, amount):
+     return tf.add (points, amount)
 
 translation_amount = tf.constant ([1,2,3], dtype=tf.float32)
-translated_object = translate_obj(pyramidpoints, translation_amount)
+translated_object = translate_obj(points, translation_amount)
 
 with tf.compat.v1.Session() as session:
      translated_pyramid = session.run (translated_object)
 
+_plt_basic_object_ (translated_pyramid)
 
-def rotate(option, pyramidpoints):
-    def rotate_obj(pyramidpoints, angle):
+def rotate(option, points):
+    def rotate_obj(points, angle):
         angle = float(angle)
         rotation_matrix = tf.stack([
                         [tf.cos(angle), tf.sin(angle), 0],
@@ -131,13 +136,14 @@ def rotate(option, pyramidpoints):
     with tf.compat.v1.Session() as session:
             if option == "Pyramid":
                rotated_object = session.run(rotate_obj(init_pyramid_, 75)) 
+            _plt_basic_object(rotated_object)
 
 
 #triangular prism
 def _triangular_prism_(bottom_lower=(0, 0, 0), side_length=5, height=5):
     
     bottom_lower = np.array(bottom_lower)
-    tripoints = np.vstack([
+    points = np.vstack([
         bottom_lower,
         bottom_lower + [0, side_length, 0],
         bottom_lower + [side_length, side_length, 0],
@@ -148,24 +154,27 @@ def _triangular_prism_(bottom_lower=(0, 0, 0), side_length=5, height=5):
     ])
 
     rotation_matrix = np.array([[0, 0, 1], [1, 0, 0], [0, 1, 0]])
-    tripoints = np.dot(tripoints, rotation_matrix.T)
-    return tripoints
+    points = np.dot(points, rotation_matrix.T)
+    return points
 
-init_triangular_prism_ = triangular_prism (side_length=3)
-tripoints = tf.constant (init_triangular_prism_, dtype = tf.float32)
+init_triangular_prism_ = _triangular_prism_ (side_length=3)
+points = tf.constant (init_triangular_prism_, dtype = tf.float32)
 
+_plt_basic_object_ (init_triangular_prism_)
 
 def translate_obj (points, amount):
      return tf.add (points, amount)
 
 translation_amount = tf.constant ([1,2,3], dtype=tf.float32)
-translated_object = translate_obj(tripoints, translation_amount)
+translated_object = translate_obj(points, translation_amount)
 
 with tf.compat.v1.Session() as session:
      translated_triangular_prism = session.run (translated_object)
 
-def rotate(option, tripoints):
-    def rotate_obj(tripoints, angle):
+_plt_basic_object_ (translated_triangular_prism)
+
+def rotate(option, points):
+    def rotate_obj(points, angle):
         angle = float(angle)
         rotation_matrix = tf.stack([
                         [tf.cos(angle), tf.sin(angle), 0],
@@ -180,6 +189,7 @@ def rotate(option, tripoints):
     with tf.compat.v1.Session() as session:
           if option == "Triangular Prism":
             rotated_object = session.run(rotate_obj(init_triangular_prism_, 75)) 
+            _plt_basic_object (rotated_object)
 
 #sphere
 def _sphere_(center=(0,0,0,), radius=1):
@@ -192,25 +202,28 @@ def _sphere_(center=(0,0,0,), radius=1):
     y = center[1] + radius*np.sin(phi)*np.sin(theta)
     z = center[2] + radius*np.cos(phi)
 
-    spherepoints = np.vstack([x.flatten(), y.flatten(), z.flatten()]).T
+    points = np.vstack([x.flatten(), y.flatten(), z.flatten()]).T
 
-    return spherepoints
+    return points
 
-init_sphere_ = sphere (radius=3)
-spherepoints = tf.constant (init_sphere_, dtype = tf.float32)
+init_sphere_ = _sphere_ (radius=3)
+points = tf.constant (init_sphere_, dtype = tf.float32)
 
+_plt_basic_object_ (init_sphere_)
 
-def translate_obj (spherepoints, amount):
-     return tf.add (spherepoints, amount)
+def translate_obj (points, amount):
+     return tf.add (points, amount)
 
 translation_amount = tf.constant ([1,2,3], dtype=tf.float32)
-translated_object = translate_obj(spherepoints, translation_amount)
+translated_object = translate_obj(points, translation_amount)
 
 with tf.compat.v1.Session() as session:
      translated_sphere = session.run (translated_object)
 
-def rotate(option, spherepoints):
-    def rotate_obj(spherepoints, angle):
+_plt_basic_object_ (translated_sphere)
+
+def rotate(option, points):
+    def rotate_obj(points, angle):
         angle = float(angle)
         rotation_matrix = tf.stack([
                         [tf.cos(angle), tf.sin(angle), 0],
@@ -218,13 +231,14 @@ def rotate(option, spherepoints):
                         [0, 0, 1]
         ])
 
-        rotate_object = tf.matmul(tf.cast(spherepoints, tf.float32), tf.cast(rotation_matrix, tf.float32))
+        rotate_object = tf.matmul(tf.cast(points, tf.float32), tf.cast(rotation_matrix, tf.float32))
         
         return rotate_object
                 
     with tf.compat.v1.Session() as session:      
         if option == "Sphere":
-            rotated_object = session.run(rotate_obj(init_sphere_, 75))       
+            rotated_object = session.run(rotate_obj(init_sphere_, 75)) 
+            _plt_basic_object (rotated_object)        
 
 def main ():
 
@@ -240,45 +254,9 @@ def main ():
           z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
         
           translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
-          translated_points = translation_amount + cubepoints
+          translated_points = translation_amount + points
           fig1 = _plt_basic_object_(translated_points.numpy())
           st.subheader("Cube")
-          st.pyplot(fig1) 
-
-     if (option == "Pyramid"):
-          st.sidebar.title("Points for Pyramid")
-          x = st.sidebar.slider("Enter for x:", -5, 5, step=1,key='my_slider1')
-          y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
-          z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
-        
-          translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
-          translated_points = translation_amount + pyramidpoints
-          fig1 = _plt_basic_object_(translated_points.numpy())
-          st.subheader("Pyramid")
-          st.pyplot(fig1)
-
-     if (option == "Triangular Prism"):
-          st.sidebar.title("Points for Triangular Prism")
-          x = st.sidebar.slider("Enter for x:", -5, 5, step=1,key='my_slider1')
-          y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
-          z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
-        
-          translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
-          translated_points = translation_amount + tripoints
-          fig1 = _plt_basic_object_(translated_points.numpy())
-          st.subheader("Triangular Prism")
-          st.pyplot(fig1) 
-
-     if (option == "Sphere"):
-          st.sidebar.title("Points for Sphere")
-          x = st.sidebar.slider("Enter for x:", -5, 5, step=1,key='my_slider1')
-          y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
-          z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
-        
-          translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
-          translated_points = translation_amount + spherepoints
-          fig1 = _plt_basic_object_(translated_points.numpy())
-          st.subheader("Sphere")
           st.pyplot(fig1) 
 
           
@@ -288,5 +266,6 @@ def main ():
           
 
         
-if _name_ == '_main_':
+if __name__ == '__main__':
     main()
+
