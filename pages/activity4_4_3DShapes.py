@@ -62,7 +62,7 @@ init_cube_ = _cube_ (side_length=3)
 cubepoints = tf.constant (init_cube_, dtype = tf.float32)
 
 
-def rotate(option, cubepoints):
+def rotate(option):
     def rotate_obj(cubepoints, angle):
         angle = float(angle)
         rotation_matrix = tf.stack([
@@ -76,14 +76,14 @@ def rotate(option, cubepoints):
         return rotate_object
         
         
-    with tf.compat.v1.Session() as session:
+    with tf.compat.v1.Session(rotated_object) as session:
          
           if option == "Cube":
             rotated_object = session.run(rotate_obj(init_cube_, 75)) 
 
 
 
-def rotate(option, points):
+def rotate(option):
     def rotate_obj(points, angle):
         angle = float(angle)
         rotation_matrix = tf.stack([
@@ -101,7 +101,7 @@ def rotate(option, points):
          
           if option == "Cube":
             rotated_object = session.run(rotate_obj(init_cube_, 75)) 
-            _plt_basic_object (rotated_object)
+          init_cube_ (rotated_object)
 
 #pyramid
 def _pyramid_ (bottom_lower = (0,0,0,), side_length = 5, height = 5):
