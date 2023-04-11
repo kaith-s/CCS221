@@ -42,7 +42,7 @@ def _cube_ (bottom_lower = (0,0,0,), side_length = 5):
      
      """ Create cube starting from the given bottom-lower point (lowest x,y,z values)"""
      bottom_lower = np.array (bottom_lower)
-     points 
+      
 
      points = np.vstack ([
           bottom_lower,
@@ -257,7 +257,10 @@ def rotate(option, points):
     with tf.compat.v1.Session() as session:      
         if option == "Sphere":
             rotated_object = session.run(rotate_obj(init_sphere_, 75)) 
-            _plt_basic_object (rotated_object)        
+            _plt_basic_object (rotated_object)       
+
+            
+             
 
 def main ():
 
