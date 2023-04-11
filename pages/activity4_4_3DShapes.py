@@ -44,7 +44,7 @@ def _cube_ (bottom_lower = (0,0,0,), side_length = 5):
      bottom_lower = np.array (bottom_lower)
       
 
-     points = np.vstack ([
+     cubepoints = np.vstack ([
           bottom_lower,
           bottom_lower + [0, side_length, 0],
           bottom_lower + [side_length, side_length, 0],
@@ -58,7 +58,7 @@ def _cube_ (bottom_lower = (0,0,0,), side_length = 5):
 
      return cubepoints
 
-init_cube_ = _cube_ (side_length=3)
+init_cube_ = cubepoints (side_length=3)
 cubepoints = tf.constant (init_cube_, dtype = tf.float32)
 
 
