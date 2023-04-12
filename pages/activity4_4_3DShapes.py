@@ -262,8 +262,9 @@ def main ():
           translated_points = translation_amount + points
           translate(translated_points)
           rotate(option, points)
+          fig1 = _plt_basic_object_ (translated_points.numpy())
           st.subheader("Cube")
-          st.pyplot()
+          st.pyplot(fig1)
 
      if option == "Pyramid":
         st.sidebar.title("Points for Pyramid")
