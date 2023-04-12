@@ -280,7 +280,7 @@ def main ():
         translated_points = translation_amount + points
         translate_obj(translated_points)
         rotate(option, points)
-
+        _plt_basic_object_ (init_pyramid_)
         st.subheader("Pyramid")
         st.pyplot()
 
@@ -298,7 +298,7 @@ def main ():
         translated_points = translation_amount + points
         translate(translated_points)
         rotate(option, points)
-
+        _plt_basic_object_ (init_triangular_prism_)
         st.subheader("Triangular Prism")
         st.pyplot()
 
@@ -316,7 +316,7 @@ def main ():
         translated_points = translation_amount + points
         translate(translated_points)
         rotate(option, points)
-
+        _plt_basic_object_ (init_sphere_)
         st.subheader("Sphere")
         st.pyplot()
           
