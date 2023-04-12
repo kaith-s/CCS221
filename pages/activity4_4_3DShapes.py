@@ -36,6 +36,7 @@ def _plt_basic_object_ (points) :
 
      plt.show()
      st.pyplot (fig)
+     return fig
 
 #cube
 def _cube_ (bottom_lower = (0,0,0,), side_length = 5):
@@ -256,9 +257,9 @@ def main ():
         
           translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
           translated_points = translation_amount + points
-          _init_cube_ = _cube_ (translated_points())
+          fig1 = _cube_ (translated_points())
           st.subheader("Cube")
-          st.pyplot(_init_cube_) 
+          st.pyplot(fig1)
 
           
 
