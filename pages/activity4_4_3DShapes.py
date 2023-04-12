@@ -81,7 +81,7 @@ def rotate(option):
          
           if option == "Cube":
             rotated_object = session.run(rotate_obj(init_cube_, 75)) 
-          init_cube_ = _cube_ 
+          _plt_basic_object_ (rotated_object)
 
 #pyramid
 def _pyramid_ (bottom_lower = (0,0,0,), side_length = 5, height = 5):
@@ -257,7 +257,7 @@ def main ():
         
           translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
           translated_points = translation_amount + points
-          fig1 = _cube_ (translated_points())
+          fig1 = _plt_basic_object_ (translated_points.np ())
           st.subheader("Cube")
           st.pyplot(fig1)
 
