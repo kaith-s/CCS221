@@ -278,7 +278,7 @@ def main ():
 
         translation_amount = tf.constant([x, y, z], dtype=tf.float32)
         translated_points = translation_amount + points
-        translate_obj(translated_points)
+        translate(translated_points)
         rotate(option, points)
         _plt_basic_object_ (init_pyramid_)
         st.subheader("Pyramid")
