@@ -279,7 +279,7 @@ def main ():
           st.subheader("Cube")
           st.pyplot()
 
-     if option == 'Pyramid':
+     if option == "Pyramid":
         st.sidebar.title("Points for Pyramid")
         x = st.sidebar.slider("Enter for x:", -5, 5, step=1,key='my_slider1')
         y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
@@ -298,7 +298,7 @@ def main ():
         st.pyplot()
 
      if option == "Triangular Prism":
-        st.sidebar.title("Points for Triabgular Prism")
+        st.sidebar.title("Points for Triangular Prism")
         x = st.sidebar.slider("Enter for x:", -5, 5, step=1,key='my_slider1')
         y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
         z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
@@ -309,7 +309,7 @@ def main ():
 
         translation_amount = tf.constant([x, y, z], dtype=tf.float32)
         translated_points = translation_amount + points
-        translate_obj(translated_points)
+        translate(translated_points)
         rotate(option, points)
 
         st.subheader("Triangular Prism")
