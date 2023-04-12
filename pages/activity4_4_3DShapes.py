@@ -262,13 +262,15 @@ def main ():
 
      st.write('The shape you chose is:', option)
 
-     if (option == "Cube"):
+     if option == "Cube":
           st.sidebar.title("Points for Cube")
           x = st.sidebar.slider("Enter for x:", -5, 5, step=1,key='my_slider1')
           y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
           z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
 
           _cube_(bottom_lower=(0, 0, 0), side_length=5)
+          init_cube_ = _cube_(side_length=5)
+          points = tf.constant(init_cube_, dtype=tf.float32)
         
           translation_amount = tf.constant([1, 2, 2], dtype=tf.float32)
           translated_points = translation_amount + points
