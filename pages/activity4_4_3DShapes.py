@@ -118,8 +118,6 @@ def _pyramid_ (bottom_lower = (0,0,0,), side_length = 5, height = 5):
 init_pyramid_ = _pyramid_ (side_length=3)
 points = tf.constant (init_pyramid_, dtype = tf.float32)
 
-_plt_basic_object_ (init_pyramid_)
-
 def translate_obj (points, amount):
      return tf.add (points, amount)
 
@@ -128,7 +126,6 @@ translated_object = translate_obj(points, translation_amount)
 
 with tf.compat.v1.Session() as session:
      translated_pyramid = session.run (translated_object)
-
 _plt_basic_object_ (translated_pyramid)
 
 def rotate(option, points):
@@ -172,8 +169,6 @@ def _triangular_prism_(bottom_lower=(0, 0, 0), side_length=5, height=5):
 init_triangular_prism_ = _triangular_prism_ (side_length=3)
 points = tf.constant (init_triangular_prism_, dtype = tf.float32)
 
-_plt_basic_object_ (init_triangular_prism_)
-
 def translate_obj (points, amount):
      return tf.add (points, amount)
 
@@ -182,7 +177,6 @@ translated_object = translate_obj(points, translation_amount)
 
 with tf.compat.v1.Session() as session:
      translated_triangular_prism = session.run (translated_object)
-
 _plt_basic_object_ (translated_triangular_prism)
 
 def rotate(option):
@@ -221,8 +215,6 @@ def _sphere_(center=(0,0,0,), radius=1):
 init_sphere_ = _sphere_ (radius=3)
 points = tf.constant (init_sphere_, dtype = tf.float32)
 
-_plt_basic_object_ (init_sphere_)
-
 def translate_obj (points, amount):
      return tf.add (points, amount)
 
@@ -231,7 +223,6 @@ translated_object = translate_obj(points, translation_amount)
 
 with tf.compat.v1.Session() as session:
      translated_sphere = session.run (translated_object)
-
 _plt_basic_object_ (translated_sphere)
 
 def rotate(option, points):
