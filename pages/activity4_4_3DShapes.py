@@ -272,7 +272,7 @@ def main ():
           init_cube_ = _cube_(side_length=3)
           points = tf.constant(init_cube_, dtype=tf.float32)
         
-          translation_amount = tf.constant([1, 2, 2], dtype=tf.float32)
+          translation_amount = tf.constant([x, y, z], dtype=tf.float32)
           translated_points = translation_amount + points
           translate(translated_points)
           rotate(option, points)
