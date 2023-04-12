@@ -291,11 +291,28 @@ def main ():
 
         translation_amount = tf.constant([x, y, z], dtype=tf.float32)
         translated_points = translation_amount + points
-        translate(translated_points)
+        translate_obj(translated_points)
         rotate(option, points)
 
         st.subheader("Pyramid")
         st.pyplot()
 
+     if option == "Triangular Prism":
+        st.sidebar.title("Points for Triabgular Prism")
+        x = st.sidebar.slider("Enter for x:", -5, 5, step=1,key='my_slider1')
+        y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
+        z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
+
+        _triangular_prism_(bottom_lower=(0, 0, 0), side_length=5, height=5)
+        init_triangular_prism_ = _triangular_prism_(side_length=5)
+        points = tf.constant(init_triangular_prism_, dtype=tf.float32)
+
+        translation_amount = tf.constant([x, y, z], dtype=tf.float32)
+        translated_points = translation_amount + points
+        translate_obj(translated_points)
+        rotate(option, points)
+
+        st.subheader("Triangular Prism")
+        st.pyplot()
           
 main()
