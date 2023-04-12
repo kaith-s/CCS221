@@ -80,7 +80,7 @@ def rotate(option):
          
           if option == "Cube":
             rotated_object = session.run(rotate_obj(init_cube_, 75)) 
-
+          init_cube_ = _cube_ 
 
 #pyramid
 def _pyramid_ (bottom_lower = (0,0,0,), side_length = 5, height = 5):
