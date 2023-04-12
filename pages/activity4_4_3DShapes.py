@@ -256,10 +256,10 @@ def main ():
           z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
         
           translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
-          translated_points = translation_amount + points
-          translated_points()
+          translated_points = translation_amount + cubepoints
+          fig = _plt_basic_object_(translated_points())
           st.subheader("Cube")
-          st.pyplot()
+          st.pyplot(fig)
 
           
 
