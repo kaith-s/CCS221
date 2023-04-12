@@ -57,10 +57,10 @@ def _cube_ (bottom_lower = (0,0,0,), side_length = 5):
           bottom_lower,
      ])
 
-     return points
+     return cubepoints
 
 init_cube_ = _cube_ (side_length=3)
-points = tf.constant (init_cube_, dtype = tf.float32)
+cubepoints = tf.constant (init_cube_, dtype = tf.float32)
 
 
 def rotate(option, points):
