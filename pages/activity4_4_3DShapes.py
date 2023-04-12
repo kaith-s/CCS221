@@ -76,7 +76,7 @@ def translate(points):
             translated_object = session.run(translated_object)
             _plt_basic_object_ (translated_object)       
 
-def rotate(option, points):
+def rotate(option):
     def rotate_obj(points, angle):
         angle = float(angle)
         rotation_matrix = tf.stack([
@@ -267,18 +267,15 @@ def main ():
           x = st.sidebar.slider("Enter for x:", -5, 5, step=1,key='my_slider1')
           y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
           z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
+
+          _cube_(bottom_lower=(0, 0, 0), side_length=3)
         
           translation_amount = tf.constant([1, 2, 2], dtype=tf.float32)
-          translated_object = translate_obj(points, translation_amount)
+          translated_points = translation_amount + points
+          translate(translated_points)
+          rotate(option, points)
           st.subheader("Cube")
           st.pyplot()
 
           
-
-     
-
-          
-
-
 main()
-
