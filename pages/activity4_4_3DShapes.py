@@ -256,9 +256,9 @@ def main ():
         
           translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
           translated_points = translation_amount + points
-          fig1 = _cube_ (translated_points())
+          _init_cube_ = _cube_ (translated_points())
           st.subheader("Cube")
-          st.pyplot(fig1) 
+          st.pyplot(_init_cube_) 
 
           
 
@@ -266,7 +266,6 @@ def main ():
 
           
 
-        
-if __name__ == '__main__':
-    main()
+
+main()
 
