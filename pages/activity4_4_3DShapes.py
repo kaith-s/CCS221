@@ -268,8 +268,8 @@ def main ():
           y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
           z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
 
-          _cube_(bottom_lower=(0, 0, 0), side_length=5)
-          init_cube_ = _cube_(side_length=5)
+          _cube_(bottom_lower=(0, 0, 0), side_length=3)
+          init_cube_ = _cube_(side_length=3)
           points = tf.constant(init_cube_, dtype=tf.float32)
         
           translation_amount = tf.constant([1, 2, 2], dtype=tf.float32)
