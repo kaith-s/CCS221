@@ -62,6 +62,19 @@ def _cube_ (bottom_lower = (0,0,0,), side_length = 5):
 init_cube_ = _cube_ (side_length=3)
 cubepoints = tf.constant (init_cube_, dtype = tf.float32)
 
+def translate(points):
+    def translate_obj(points, amount):
+        return tf.add(points, amount)
+
+
+    translation_amount = tf.constant([1, 2, 2], dtype=tf.float32)
+    translated_object = translate_obj(points, translation_amount)
+
+
+    with tf.compat.v1.Session() as session:
+ 
+            translated_object = session.run(translated_object)
+            _plt_basic_object_ (translated_object)       
 
 def rotate(option, points):
     def rotate_obj(points, angle):
@@ -255,8 +268,8 @@ def main ():
           y = st.sidebar.slider("Enter for y:", -5, 5, step=1,key='my_slider2')
           z = st.sidebar.slider("Enter for z:", -5, 5, step=1,key='my_slider3')
         
-          translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
-          translated_points = translation_amount + cubepoints
+          translation_amount = tf.constant([1, 2, 2], dtype=tf.float32)
+          translated_object = translate_obj(points, translation_amount)
           st.subheader("Cube")
           st.pyplot()
 
