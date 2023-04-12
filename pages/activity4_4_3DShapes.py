@@ -257,6 +257,7 @@ def main ():
         
           translation_amount = tf.constant ([x,y,z], dtype=tf.float32)
           translated_points = translation_amount + points
+          _plt_basic_object_ (translated_points.numpy ())
           st.subheader("Cube")
           st.pyplot()
 
