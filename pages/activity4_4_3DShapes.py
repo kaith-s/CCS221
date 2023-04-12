@@ -63,8 +63,8 @@ init_cube_ = _cube_ (side_length=3)
 points = tf.constant (init_cube_, dtype = tf.float32)
 
 
-def rotate(option):
-    def rotate_obj(cubepoints, angle):
+def rotate(option, points):
+    def rotate_obj(points, angle):
         angle = float(angle)
         rotation_matrix = tf.stack([
                         [tf.cos(angle), tf.sin(angle), 0],
@@ -72,7 +72,7 @@ def rotate(option):
                         [0, 0, 1]
         ])
 
-        rotate_object = tf.matmul(tf.cast(cubepoints, tf.float32), tf.cast(rotation_matrix, tf.float32))
+        rotate_object = tf.matmul(tf.cast(points, tf.float32), tf.cast(rotation_matrix, tf.float32))
         
         return rotate_object
         
