@@ -135,7 +135,7 @@ def rotate(option, points):
     with tf.compat.v1.Session() as session:
             if option == "Pyramid":
                rotated_object = session.run(rotate_obj(init_pyramid_, 75)) 
-            _plt_basic_object(rotated_object)
+            _plt_basic_object_ (rotated_object)
 
 
 #triangular prism
@@ -188,7 +188,7 @@ def rotate(option, points):
     with tf.compat.v1.Session() as session:
           if option == "Triangular Prism":
             rotated_object = session.run(rotate_obj(init_triangular_prism_, 75)) 
-            _plt_basic_object (rotated_object)
+            _plt_basic_object_ (rotated_object)
 
 #sphere
 def _sphere_(center=(0,0,0,), radius=1):
@@ -237,7 +237,7 @@ def rotate(option, points):
     with tf.compat.v1.Session() as session:      
         if option == "Sphere":
             rotated_object = session.run(rotate_obj(init_sphere_, 75)) 
-            _plt_basic_object (rotated_object)       
+            _plt_basic_object_ (rotated_object)       
 
             
              
